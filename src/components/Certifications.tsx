@@ -1,4 +1,3 @@
-// src/components/Certifications.tsx
 import React from 'react';
 import CertificateCard from './CertificateCard';
 import './styles/Certifications.css';
@@ -27,7 +26,7 @@ const certificationsData: Certificate[] = [
     id: 3,
     title: 'PMKVY PYTHON',
     imageSrc: '/images/Skillindia.jpg',
-    verifyUrl: 'https://admin.skillindiadigital.gov.in/documentverificationbyQR?...'
+    verifyUrl: 'https://drive.google.com/file/d/1IYBorft0RJA9STieZDJ9OKXcf0wEVWlZ/view?usp=drivesdk'
   }
 ];
 

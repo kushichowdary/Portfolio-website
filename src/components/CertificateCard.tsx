@@ -1,4 +1,3 @@
-// src/components/CertificateCard.tsx
 import React from 'react';
 import styles from './styles/CertificateCard.module.css';
 import AnimatedVerifyButton from './AnimatedVerifyButton';
@@ -13,15 +12,12 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ imageSrc, title, veri
   return (
     <div className={styles.card}>
       <div className={styles.cardInner}>
-        {/* FRONT FACE */}
         <div className={styles.cardFront}>
           <img src={imageSrc} alt={title} className={styles.frontImage} />
           <div className={styles.frontTitleWrapper}>
             <span className={styles.frontTitle}>{title}</span>
           </div>
         </div>
-
-        {/* BACK FACE */}
         <div className={styles.cardBack}>
           <div className={styles.animatedBlobs} />
           <div className={styles.backOverlay} />

@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import './styles/AnimatedVerifyButton.css'
-import './styles/AnimatedVerifyButton.css'
+import './styles/AnimatedVerifyButton.css';
 
 interface AnimatedButtonProps {
   onClick: () => void;
+  children: React.ReactNode;
 }
 
-const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick }) => {
+const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) => {
   return (
     <StyledWrapper>
       <button className="button" onClick={onClick}>
         <span className="bracket">❴</span>
-        <span className="text">Verify</span>
+        <span className="text">{children}</span>
         <span className="bracket">❵</span>
       </button>
     </StyledWrapper>

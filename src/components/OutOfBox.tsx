@@ -1,3 +1,4 @@
+// src/components/OutOfBox.tsx
 import React, { useState, useEffect } from "react";
 import AnimatedVerifyButton from "./AnimatedVerifyButton";
 import "./styles/OutOfBox.css";
@@ -25,22 +26,22 @@ const OutOfBox: React.FC = () => {
   const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeoutId: number;
     if (typing && index < terminalLines.length) {
       const { command } = terminalLines[index];
       if (currentText.length < command.length) {
-        timeout = setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           setCurrentText(command.slice(0, currentText.length + 1));
         }, 40);
       } else {
-        timeout = setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           setDisplayed(prev => [...prev, currentText]);
           setCurrentText("");
           setIndex(i => i + 1);
         }, 600);
       }
     }
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(timeoutId);
   }, [typing, currentText, index]);
 
   const handleMouseEnter = () => {
@@ -49,12 +50,12 @@ const OutOfBox: React.FC = () => {
 
   return (
     <div className="outofbox-container">
-      <h1 className="outofbox-title">Passion</h1>
+      <h2 className="outofbox-title">Passion</h2>
+      <h4 className="outofbox-subtitle">Through My Lens</h4>
 
       <div className="marquee-wrapper" onMouseEnter={handleMouseEnter}>
         <div className="marquee-blur left-blur" />
         <div className="marquee-blur right-blur" />
-
         <div className="marquee-track marquee-left">
           {[...imageUrls, ...imageUrls].map((url, idx) => (
             <div className="marquee-card" key={`left-${idx}`}>
@@ -62,7 +63,6 @@ const OutOfBox: React.FC = () => {
             </div>
           ))}
         </div>
-
         <div className="marquee-track marquee-right">
           {[...imageUrls, ...imageUrls].map((url, idx) => (
             <div className="marquee-card" key={`right-${idx}`}>
@@ -72,7 +72,6 @@ const OutOfBox: React.FC = () => {
         </div>
       </div>
 
-      {/* Terminal */}
       <div className="termux-box">
         <div className="termux-header">
           <div className="termux-dot red" />
@@ -88,17 +87,24 @@ const OutOfBox: React.FC = () => {
               <span className={`color-${i % 5}`}>{cmd}</span>
             </div>
           ))}
-          {index < terminalLines.length && (
+
+          {index < terminalLines.length ? (
             <div className="termux-line">
               <span className="prompt">{terminalLines[index].prompt}</span>
               <span className={`color-${index % 5} typing`}>{currentText}</span>
             </div>
-          )}
-          {index >= terminalLines.length && (
+          ) : (
             <>
+              <div className="glitch">_</div>
               <div className="verify-button-wrapper">
-                <a href="http://instagram.com/_explore_lens_" target="_blank" rel="noopener noreferrer">
-                  <AnimatedVerifyButton />
+                <a
+                  href="https://instagram.com/your_insta_username"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <AnimatedVerifyButton onClick={() => {}}>
+                    Verify
+                  </AnimatedVerifyButton>
                 </a>
               </div>
             </>

@@ -9,10 +9,22 @@
   font-family: 'Source Code Pro', monospace;
 }
 
+/* Main title */
 .outofbox-title {
   font-size: 2.5rem;
   text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #d4bfff, #9466ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle centered beneath main title */
+.outofbox-subtitle {
+  font-size: 1.5rem;
+  text-align: center;
   margin-bottom: 2rem;
+  opacity: 0.8;
   background: linear-gradient(to right, #d4bfff, #9466ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -85,12 +97,12 @@
 }
 
 @keyframes scroll-left {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 @keyframes scroll-right {
-  0% { transform: translateX(-50%); }
+  0%   { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
 
@@ -118,10 +130,15 @@
   position: relative;
 }
 
-.termux-dot { width: 12px; height: 12px; border-radius: 50%; }
-.termux-dot.red { background: #f87171; }
+.termux-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.termux-dot.red    { background: #f87171; }
 .termux-dot.yellow { background: #facc15; }
-.termux-dot.green { background: #4ade80; }
+.termux-dot.green  { background: #4ade80; }
 
 .termux-title {
   position: absolute;
@@ -168,8 +185,7 @@
   50%      { border-color: #22c55e; }
 }
 
-
-/* Centered AnimatedVerifyButton */
+/* Centered verify button wrapper */
 .verify-button-wrapper {
   display: flex;
   justify-content: center;
@@ -177,7 +193,7 @@
 }
 
 @media (max-width: 768px) {
-  .outofbox-title:first-of-type { font-size: 2rem; }
-  .outofbox-title:last-of-type { font-size: 1.2rem; }
-  .marquee-card { min-width: 140px; height: 140px; }
+  .outofbox-title    { font-size: 2rem; }
+  .outofbox-subtitle { font-size: 1.2rem; }
+  .marquee-card      { min-width: 140px; height: 140px; }
 }
