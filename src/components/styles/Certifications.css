@@ -1,0 +1,64 @@
+/* src/components/Certifications.css */
+
+/* Global font + gradient style */
+.cert-section, .cert-title, .cert-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Section with purple‐black gradient background */
+.cert-section {
+  background: linear-gradient(180deg, #000000 0%, #1e0028 200%);
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* Glowing title with gradient text */
+.cert-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #d5caff 0%, #7c5fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Flex container: horizontally centered cards */
+.cert-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Purple radial glow behind cards */
+.cert-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .cert-wrapper {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-section {
+    padding: 40px 10px;
+  }
+  .cert-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+}
