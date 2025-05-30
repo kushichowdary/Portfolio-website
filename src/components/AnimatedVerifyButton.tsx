@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import './styles/AnimatedVerifyButton.css'
-=======
->>>>>>> ba3dc94 (second commit)
-=======
 import './styles/AnimatedVerifyButton.css'
->>>>>>> 56c497d (updated)
 
 interface AnimatedButtonProps {
   onClick: () => void;
