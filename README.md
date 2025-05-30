@@ -1,15 +1,39 @@
-# My Portfolio Wesbite - Overview 🚀
+# Kushichowdary’s Portfolio Website 🚀
 
-This repository contains the open source version of my porfolio website.
-Do check it out!
+Your one‑stop showcase of my projects, skills, and design experiments — built with modern web technologies and immersive animations.
 
-## Instructions 🛠️
+---
 
-I have modified the gsap club plugins with the trial plugins, but with the trial plugin you cannot host it🔴. So for Club plugins, Check out here: https://gsap.com/docs/v3/Installation/
+## 🎯 Overview
 
-**Techstack** - React, TypeScript, GSAP, ThreeJS, WebGL, HTML, Css, JavaScript
+This repository contains the source code for my personal portfolio website. It demonstrates my:
 
-![Protfolio-Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
+- Front‑end expertise with **React** & **TypeScript**  
+- Animation chops using **GSAP** & **Three.js**  
+- Responsive design and performance optimizations  
+- Creative use of **WebGL** for interactive visuals  
+
+Feel free to explore, fork, and adapt any part to suit your own portfolio needs!
+
+---
+
+## 📺 Live Demo
+
+🔗 [View the live site here](https://kushichowdary.github.io/Portfolio-website/)  
+![Portfolio Preview](https://raw.githubusercontent.com/kushichowdary/Portfolio-website/main/assets/preview.png)
+
+---
+
+## 🚀 Features
+
+- **Animated Scroll** with GSAP ScrollTrigger  
+- **3D & WebGL Scenes** powered by Three.js  
+- **Responsive Layout** for all screen sizes  
+- **Smooth Transitions** between sections  
+- **Light & Dark Mode** toggle  
+- **Contact Form** integration  
+
+---
 
 ## License
 
