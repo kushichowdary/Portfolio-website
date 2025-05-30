@@ -1,27 +1,35 @@
+// src/components/CertificateCard.tsx
 import React from 'react';
 import styles from './styles/CertificateCard.module.css';
+import AnimatedVerifyButton from './AnimatedVerifyButton';
 
 interface CertificateCardProps {
-  title: string;
   imageSrc: string;
+  title: string;
   verifyUrl: string;
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({ title, imageSrc, verifyUrl }) => {
+const CertificateCard: React.FC<CertificateCardProps> = ({ imageSrc, title, verifyUrl }) => {
   return (
     <div className={styles.card}>
-      <div className={styles.inner}>
-        <div className={styles.front}>
-          <img src={imageSrc} alt={title} className={styles.image} />
-          <h3 className={styles.title}>{title}</h3>
-        </div>
-        <div className={styles.back}>
-          <div className={styles.abstractWrapper}>
-
+      <div className={styles.cardInner}>
+        {/* FRONT FACE */}
+        <div className={styles.cardFront}>
+          <img src={imageSrc} alt={title} className={styles.frontImage} />
+          <div className={styles.frontTitleWrapper}>
+            <span className={styles.frontTitle}>{title}</span>
           </div>
-          <a href={verifyUrl} className={styles.verifyButton} target="_blank" rel="noopener noreferrer">
-            Verify Certificate
-          </a>
+        </div>
+
+        {/* BACK FACE */}
+        <div className={styles.cardBack}>
+          <div className={styles.animatedBlobs} />
+          <div className={styles.backOverlay} />
+          <div className={styles.backContent}>
+            <AnimatedVerifyButton onClick={() => window.open(verifyUrl, '_blank')}>
+              Verify Certificate
+            </AnimatedVerifyButton>
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
-/* src/components/Certifications.css */
+/* src/components/styles/Certifications.css */
 
 /* Global font + gradient style */
-.cert-section, .cert-title, .cert-wrapper {
+.cert-section,
+.cert-title,
+.cert-wrapper {
   font-family: 'Segoe UI', sans-serif;
 }
 

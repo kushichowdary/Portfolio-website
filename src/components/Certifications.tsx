@@ -1,3 +1,4 @@
+// src/components/Certifications.tsx
 import React from 'react';
 import CertificateCard from './CertificateCard';
 import './styles/Certifications.css';
@@ -20,32 +21,30 @@ const certificationsData: Certificate[] = [
     id: 2,
     title: 'SALESFORCE CERTIFIED AI ASSOCIATE',
     imageSrc: '/images/salesforce.jpg',
-    verifyUrl: 'https://trailhead.salesforce.com/en/credentials/verification'
+    verifyUrl: 'https://drive.google.com/file/d/1IFKRb6ubHytx0JCl1rRj2kmMlh7bBB7z/view?usp=drivesdk'
   },
   {
     id: 3,
-    title: 'PYTHON CERTIFICATION',
-    imageSrc: '/images/python.jpg',
-    verifyUrl: 'https://www.coursera.org/account/accomplishments/verify/5B86A2YLC5DB'
+    title: 'PMKVY PYTHON',
+    imageSrc: '/images/Skillindia.jpg',
+    verifyUrl: 'https://admin.skillindiadigital.gov.in/documentverificationbyQR?...'
   }
 ];
 
-const Certifications: React.FC = () => {
-  return (
-    <section className="cert-section">
-      <h2 className="cert-title">Certifications</h2>
-      <div className="cert-wrapper">
-        {certificationsData.map(cert => (
-          <CertificateCard
-            key={cert.id}
-            imageSrc={cert.imageSrc}
-            title={cert.title}
-            verifyUrl={cert.verifyUrl}
-          />
-        ))}
-      </div>
-    </section>
-  );
-};
+const Certifications: React.FC = () => (
+  <section className="cert-section">
+    <h2 className="cert-title">Certifications</h2>
+    <div className="cert-wrapper">
+      {certificationsData.map(cert => (
+        <CertificateCard
+          key={cert.id}
+          imageSrc={cert.imageSrc}
+          title={cert.title}
+          verifyUrl={cert.verifyUrl}
+        />
+      ))}
+    </div>
+  </section>
+);
 
 export default Certifications;
