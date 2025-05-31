@@ -99,7 +99,7 @@ const OutOfBox: React.FC = () => {
               <div className="glitch">_</div>
               <div className="verify-button-wrapper">
                 <a
-                  href="https://instagram.com/your_insta_username"
+                  href="https://www.instagram.com/_explore_lens_"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
