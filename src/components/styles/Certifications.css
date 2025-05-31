@@ -38,19 +38,6 @@
   transition: gap 0.3s ease; /* animate gap changes */
 }
 
-/* Purple radial glow behind cards */
-.cert-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 250px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle at center, rgba(124, 95, 255, 0.3), transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
-}
 
 /* Responsive breakpoints */
 @media (max-width: 768px) {
@@ -61,13 +48,13 @@
 
 @media (max-width: 480px) {
   .cert-section {
-    padding: 40px 10px;
+    padding: 30px 20px;
   }
   .cert-title {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 40px;
   }
   .cert-wrapper {
-    gap: 10px;
+    gap: 20px;
   }
 }

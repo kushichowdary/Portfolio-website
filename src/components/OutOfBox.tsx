@@ -3,19 +3,40 @@ import AnimatedVerifyButton from "./AnimatedVerifyButton";
 import "./styles/OutOfBox.css";
 
 const imageUrls = [
-  "/images/2.jpg", "/images/3.jpg", "/images/4.jpg",
-  "/images/5.jpg", "/images/6.jpg", "/images/7.jpg", "/images/8.jpg",
-  "/images/9.jpg", "/images/10.jpg", "/images/11.jpg", "/images/12.jpg",
-  "/images/13.jpg", "/images/15.jpg", "/images/17.jpg",
-  "/images/19.jpg", "/images/20.jpg", "/images/23.jpg",
-  "/images/25.jpg", "/images/26.jpg", "/images/27.jpg", "/images/28.jpg"
+  "/images/2.jpg",
+  "/images/3.jpg",
+  "/images/4.jpg",
+  "/images/5.jpg",
+  "/images/6.jpg",
+  "/images/7.jpg",
+  "/images/8.jpg",
+  "/images/9.jpg",
+  "/images/10.jpg",
+  "/images/11.jpg",
+  "/images/12.jpg",
+  "/images/13.jpg",
+  "/images/15.jpg",
+  "/images/17.jpg",
+  "/images/19.jpg",
+  "/images/20.jpg",
+  "/images/23.jpg",
+  "/images/25.jpg",
+  "/images/26.jpg",
+  "/images/27.jpg",
+  "/images/28.jpg",
 ];
 
 const terminalLines = [
   { prompt: "guest@termux:", command: "cd /passion/photography/explore@lens" },
   { prompt: "explore@lens:~$", command: 'passion = "Capturing moments."' },
-  { prompt: "explore@lens:~$", command: 'style = "Landscape | Product | Street | Nature"' },
-  { prompt: "explore@lens:~$", command: 'status = "Always chasing the perfect frame..."' },
+  {
+    prompt: "explore@lens:~$",
+    command: 'style = "Landscape | Product | Street | Nature"',
+  },
+  {
+    prompt: "explore@lens:~$",
+    command: 'status = "Always chasing the perfect frame..."',
+  },
 ];
 
 const OutOfBox: React.FC = () => {
@@ -25,7 +46,7 @@ const OutOfBox: React.FC = () => {
   const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    let timeoutId: number;           // <-- use number instead of NodeJS.Timeout
+    let timeoutId: number;
     if (typing && index < terminalLines.length) {
       const { command } = terminalLines[index];
       if (currentText.length < command.length) {
@@ -34,9 +55,9 @@ const OutOfBox: React.FC = () => {
         }, 40);
       } else {
         timeoutId = window.setTimeout(() => {
-          setDisplayed(prev => [...prev, currentText]);
+          setDisplayed((prev) => [...prev, currentText]);
           setCurrentText("");
-          setIndex(i => i + 1);
+          setIndex((i) => i + 1);
         }, 600);
       }
     }
@@ -91,7 +112,9 @@ const OutOfBox: React.FC = () => {
           {index < terminalLines.length && (
             <div className="termux-line">
               <span className="prompt">{terminalLines[index].prompt}</span>
-              <span className={`color-${index % 5} typing`}>{currentText}</span>
+              <span className={`color-${index % 5} typing`}>
+                {currentText}
+              </span>
             </div>
           )}
           {index >= terminalLines.length && (

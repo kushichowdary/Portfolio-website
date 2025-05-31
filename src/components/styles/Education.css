@@ -1,5 +1,12 @@
-/* src/components/Education.css */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
+.educ-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .education-wrapper {
   position: relative;
@@ -160,6 +167,6 @@
     height: auto;
   }
   .card-image {
-    height: 150px;  /* Adjusted for mobile */
+    height: 100px;
   }
 }
