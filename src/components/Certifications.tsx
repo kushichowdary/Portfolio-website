@@ -1,15 +1,9 @@
+// src/components/Certifications.tsx
 import React from 'react';
 import CertificateCard from './CertificateCard';
 import './styles/Certifications.css';
 
-interface Certificate {
-  id: number;
-  title: string;
-  imageSrc: string;
-  verifyUrl: string;
-}
-
-const certificationsData: Certificate[] = [
+const certificationsData = [
   {
     id: 1,
     title: 'AWS CERTIFIED CLOUD PRACTITIONER',

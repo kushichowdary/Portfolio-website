@@ -1,22 +1,36 @@
 // src/components/CertificateCard.tsx
 import React from 'react';
+import styles from './styles/CertificateCard.module.css';
 import AnimatedVerifyButton from './AnimatedVerifyButton';
-import './styles/CertificateCard.module.css';
 
 interface CertificateCardProps {
-  imgSrc: string;
+  imageSrc: string;
+  title: string;
   verifyUrl: string;
 }
 
-export default function CertificateCard({ imgSrc, verifyUrl }: CertificateCardProps) {
+const CertificateCard: React.FC<CertificateCardProps> = ({ imageSrc, title, verifyUrl }) => {
   return (
-    <div className="certificate-card">
-      <img src={imgSrc} alt="Certificate" />
-      <div className="verify-button-wrapper">
-        <AnimatedVerifyButton onClick={() => window.open(verifyUrl, '_blank')}>
-          Verify
-        </AnimatedVerifyButton>
+    <div className={styles.card}>
+      <div className={styles.cardInner}>
+        <div className={styles.cardFront}>
+          <img src={imageSrc} alt={title} className={styles.frontImage} />
+          <div className={styles.frontTitleWrapper}>
+            <span className={styles.frontTitle}>{title}</span>
+          </div>
+        </div>
+        <div className={styles.cardBack}>
+          <div className={styles.animatedBlobs}></div>
+          <div className={styles.backOverlay}></div>
+          <div className={styles.backContent}>
+            <AnimatedVerifyButton onClick={() => window.open(verifyUrl, '_blank')}>
+              Verify Certificate
+            </AnimatedVerifyButton>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default CertificateCard;
