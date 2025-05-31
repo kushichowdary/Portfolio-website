@@ -81,7 +81,10 @@ const Scene = () => {
       const onMouseMove = (event: MouseEvent) => {
         handleMouseMove(event, (x, y) => (mouse = { x, y }));
       };
-      let debounce: number | undefined;
+
+      // Fix: use ReturnType<typeof setTimeout> for debounce type
+      let debounce: ReturnType<typeof setTimeout> | undefined;
+
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
         debounce = setTimeout(() => {
@@ -127,7 +130,7 @@ const Scene = () => {
       };
       animate();
       return () => {
-        clearTimeout(debounce);
+        if (debounce) clearTimeout(debounce);
         scene.clear();
         renderer.dispose();
         window.removeEventListener("resize", () =>
