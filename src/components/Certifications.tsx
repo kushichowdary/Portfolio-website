@@ -25,7 +25,7 @@ const certificationsData = [
 ];
 
 const Certifications: React.FC = () => (
-  <section className="cert-section">
+  <section id="certifications" className="cert-section">
     <h2 className="cert-title">Certifications</h2>
     <div className="cert-wrapper">
       {certificationsData.map(cert => (

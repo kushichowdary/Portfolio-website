@@ -32,7 +32,7 @@ const cards = [
 const Education: React.FC = () => (
   <EducationWrapper>
     <Glow />
-    <section className="educ-section">
+    <section id="education" className="educ-section">
       <GradientHeading>Education</GradientHeading>
       <CardsContainer>
         {cards.map((card, idx) => (
