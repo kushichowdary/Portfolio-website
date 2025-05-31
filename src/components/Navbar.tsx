@@ -14,15 +14,14 @@ const Navbar: React.FC = () => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.2,        // Lower = snappier, Higher = more momentum
-      smoothTouch: 0.8,   // Touch devices feel smoother
+      smooth: 1.2,
+      smoothTouch: 0.8,
       effects: true,
       autoResize: true,
       ignoreMobileResize: true,
     });
 
     smoother.scrollTop(0);
-    // REMOVED: smoother.paused(true) – we want the smoother to run continuously
 
     // 2) Link-click scrolling
     const links = document.querySelectorAll(".header ul a, .navbar-connect");
@@ -39,7 +38,7 @@ const Navbar: React.FC = () => {
       });
     });
 
-    // 3) “HIRE ME” button pulse animation (once smoother is ready)
+    // 3) “HIRE ME” button pulse animation
     gsap.fromTo(
       ".navbar-connect",
       { scale: 1 },
@@ -53,15 +52,15 @@ const Navbar: React.FC = () => {
       }
     );
 
-    // 4) Hide-on-scroll behavior using GSAP’s scroll position
+    // 4) Hide-on-scroll behavior using GSAP scroll position
     let lastScrollTop = 0;
     const headerEl = document.querySelector(".header") as HTMLElement;
 
     const scrollTriggerInstance = ScrollTrigger.create({
       start: 0,
       end: "max",
-      onUpdate: (self) => {
-        const scrollTop = smoother.scrollTop(); // use smoother's scrollTop
+      onUpdate: () => {
+        const scrollTop = smoother.scrollTop();
         if (scrollTop > lastScrollTop && scrollTop > 100) {
           headerEl.classList.add("nav-hidden");
         } else {
@@ -71,17 +70,17 @@ const Navbar: React.FC = () => {
       },
     });
 
-    // 5) Refresh ScrollSmoother on window resize
+    // 5) Refresh on resize
     const handleResize = () => {
       ScrollSmoother.refresh(true);
     };
     window.addEventListener("resize", handleResize);
 
-    // Cleanup on unmount
+    // Cleanup
     return () => {
       links.forEach((elem) => {
         const anchor = elem as HTMLAnchorElement;
-        anchor.removeEventListener("click", () => {});
+        anchor.replaceWith(anchor.cloneNode(true) as HTMLAnchorElement); // remove all listeners
       });
       window.removeEventListener("resize", handleResize);
       scrollTriggerInstance.kill();
