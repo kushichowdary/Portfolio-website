@@ -24,7 +24,7 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ imageSrc, title, veri
           <div className={styles.backOverlay}></div>
           <div className={styles.backContent}>
             <AnimatedVerifyButton onClick={() => window.open(verifyUrl, '_blank')}>
-              Verify Certificate
+              VERIFY
             </AnimatedVerifyButton>
           </div>
         </div>

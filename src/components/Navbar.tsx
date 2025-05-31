@@ -1,47 +1,45 @@
-// src/components/Navbar.tsx
-
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import HoverLinks from "./HoverLinks";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   useEffect(() => {
-    // 1) Initialize ScrollSmoother
+    // 1) Initialize ScrollSmoother with more responsive settings
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
+      smooth: 1.2,        // Lower = snappier, Higher = more momentum
+      smoothTouch: 0.8,   // Touch devices feel smoother
       effects: true,
       autoResize: true,
       ignoreMobileResize: true,
     });
 
     smoother.scrollTop(0);
-    smoother.paused(true);
+    // REMOVED: smoother.paused(true) – we want the smoother to run continuously
 
     // 2) Link-click scrolling
     const links = document.querySelectorAll(".header ul a, .navbar-connect");
     links.forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
+      const anchor = elem as HTMLAnchorElement;
+      anchor.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          const section = element.getAttribute("data-href");
-          if (section) {
-            smoother.scrollTo(section, true, "top top");
+          const targetSection = anchor.getAttribute("data-href");
+          if (targetSection) {
+            smoother.scrollTo(targetSection, true, "top top");
           }
         }
       });
     });
 
-    // 3) “HIRE ME” button pulse animation
+    // 3) “HIRE ME” button pulse animation (once smoother is ready)
     gsap.fromTo(
       ".navbar-connect",
       { scale: 1 },
@@ -51,24 +49,23 @@ const Navbar = () => {
         yoyo: true,
         ease: "power1.inOut",
         duration: 1.5,
+        delay: 0.5,
       }
     );
 
-    // 4) Hide-on-scroll behavior
+    // 4) Hide-on-scroll behavior using GSAP’s scroll position
     let lastScrollTop = 0;
-    const header = document.querySelector(".header") as HTMLElement;
+    const headerEl = document.querySelector(".header") as HTMLElement;
 
     const scrollTriggerInstance = ScrollTrigger.create({
       start: 0,
       end: "max",
       onUpdate: (self) => {
-        const scrollTop = self.scroll();
+        const scrollTop = smoother.scrollTop(); // use smoother's scrollTop
         if (scrollTop > lastScrollTop && scrollTop > 100) {
-          // User is scrolling down past 100px → hide navbar
-          header.classList.add("nav-hidden");
+          headerEl.classList.add("nav-hidden");
         } else {
-          // User is scrolling up → show navbar
-          header.classList.remove("nav-hidden");
+          headerEl.classList.remove("nav-hidden");
         }
         lastScrollTop = scrollTop;
       },
@@ -83,7 +80,8 @@ const Navbar = () => {
     // Cleanup on unmount
     return () => {
       links.forEach((elem) => {
-        (elem as HTMLAnchorElement).removeEventListener("click", () => {});
+        const anchor = elem as HTMLAnchorElement;
+        anchor.removeEventListener("click", () => {});
       });
       window.removeEventListener("resize", handleResize);
       scrollTriggerInstance.kill();

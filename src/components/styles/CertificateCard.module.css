@@ -1,5 +1,6 @@
 /* src/components/styles/CertificateCard.module.css */
 
+/* Container for each certificate card */
 .card {
   width: 300px;
   height: 400px;
@@ -7,30 +8,95 @@
   margin: 20px;
   position: relative;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
-              0 0 20px rgba(162, 89, 255, 0.4);
-  animation: floatCard 3s ease-in-out infinite;
+  overflow: visible; /* allow pseudo‐element glow to extend beyond card */
   flex-shrink: 0;
+  z-index: 0;
+  animation: pulse 5s infinite; /* Added pulsing effect */
 }
 
+/* Pulsing animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animated rotating glow behind each card with transparency */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 18px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(162, 89, 255, 0.3),
+    rgba(66, 246, 255, 0.3),
+    rgba(255, 102, 187, 0.3),
+    rgba(162, 89, 255, 0.3)
+  );
+  z-index: -1;
+  animation: rotateGradient 4s linear infinite, scaleGlow 2s ease-in-out infinite;
+  opacity: 0.5; /* Added transparency on the whole glow */
+}
+
+/* Keyframes for the rotating conic‐gradient */
+@keyframes rotateGradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Keyframes for scaling glow */
+@keyframes scaleGlow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Floating animation for the card itself */
 @keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-15px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
+.card {
+  animation: floatCard 4s ease-in-out infinite;
+  transition: margin 0.5s ease, transform 0.3s ease;
+  will-change: transform, margin;
+}
+
+/* Inner container flips on hover */
 .cardInner {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
   border-radius: 15px;
 }
 
+/* Flip effect */
 .card:hover .cardInner {
   transform: rotateY(180deg);
 }
 
+/* Shared styles for front and back faces */
 .cardFront,
 .cardBack {
   position: absolute;
@@ -41,14 +107,17 @@
   backface-visibility: hidden;
   border-radius: 15px;
   overflow: hidden;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
+/* Front face */
 .cardFront {
   background-color: #fff;
   display: flex;
   justify-content: flex-end;
 }
 
+/* Front image */
 .frontImage {
   position: absolute;
   top: 0;
@@ -58,6 +127,7 @@
   object-fit: cover;
 }
 
+/* Title overlay at bottom of front */
 .frontTitleWrapper {
   position: absolute;
   bottom: 0;
@@ -78,12 +148,23 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
+/* Back face */
 .cardBack {
   background-color: #000;
   transform: rotateY(180deg);
   position: relative;
 }
 
+/* Change background color on hover */
+.card:hover .cardFront {
+  background-color: rgba(255, 255, 255, 0.9); /* Lighter on hover */
+}
+
+.card:hover .cardBack {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+/* Animated colored blobs in background spread behind back */
 .animatedBlobs {
   position: absolute;
   top: 50%;
@@ -115,6 +196,7 @@
   }
 }
 
+/* Blur overlay on back face */
 .backOverlay {
   position: absolute;
   top: 0;
@@ -126,6 +208,7 @@
   z-index: 2;
 }
 
+/* Bottom center content (Verify button) */
 .backContent {
   position: absolute;
   bottom: 20px;
@@ -138,8 +221,9 @@
   z-index: 3;
 }
 
-/* Ensure front/back face pointer events toggle correctly */
+/* Ensure only visible face is clickable */
 .cardFront { pointer-events: auto; }
 .cardBack  { pointer-events: none; }
 .card:hover .cardFront { pointer-events: none; }
 .card:hover .cardBack  { pointer-events: auto; }
+

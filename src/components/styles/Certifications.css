@@ -1,13 +1,13 @@
 /* src/components/styles/Certifications.css */
 
-/* Global font + gradient style */
+/* Global font and base styles */
 .cert-section,
 .cert-title,
 .cert-wrapper {
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Section with purple‐black gradient background */
+/* Section background: purple‐black gradient */
 .cert-section {
   background: linear-gradient(180deg, #000000 0%, #1e0028 200%);
   padding: 60px 20px;
@@ -27,7 +27,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Flex container: horizontally centered cards */
+/* Flex container: center cards, with smooth gap transitions */
 .cert-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -35,6 +35,7 @@
   gap: 40px;
   position: relative;
   z-index: 1;
+  transition: gap 0.3s ease; /* animate gap changes */
 }
 
 /* Purple radial glow behind cards */
@@ -46,9 +47,12 @@
   width: 80%;
   height: 250px;
   transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(124, 95, 255, 0.3), transparent 70%);
   pointer-events: none;
+  border-radius: 50%;
 }
 
+/* Responsive breakpoints */
 @media (max-width: 768px) {
   .cert-wrapper {
     gap: 20px;
@@ -63,4 +67,10 @@
     font-size: 2rem;
     margin-bottom: 15px;
   }
+  .cert-wrapper {
+    gap: 10px;
+  }
 }
+
+/* Card-specific overrides (if needed) */
+/* These assume that CertificateCard.module.css is imported for individual card styling */
