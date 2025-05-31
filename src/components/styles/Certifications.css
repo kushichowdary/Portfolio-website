@@ -71,6 +71,3 @@
     gap: 10px;
   }
 }
-
-/* Card-specific overrides (if needed) */
-/* These assume that CertificateCard.module.css is imported for individual card styling */
