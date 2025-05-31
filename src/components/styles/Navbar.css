@@ -1,3 +1,8 @@
+/* src/components/styles/Navbar.css */
+
+/* -------------------------------------------------------------------
+   1) Base header styles
+   ------------------------------------------------------------------- */
 .header {
   display: flex;
   max-width: var(--cMaxWidth);
@@ -11,9 +16,71 @@
   transform: translateX(-50%);
   top: 0;
   z-index: 9999;
+
+  /* Start fully transparent; will fade to a dark background on scroll */
+  background-color: transparent;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+/* When the page is scrolled down a bit, darken the header */
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Hide header by sliding it up */
+.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* Title on the left */
+.navbar-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-title:hover {
+  color: #eae5ec;
+}
+
+/* The “HIRE ME” button */
+.navbar-connect {
+  position: absolute;
+  display: none; /* Shown from 900px+ via media query */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-connect:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Pulse keyframes for the “HIRE ME” button */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1.1) translate(-50%, -50%);
+  }
+}
+
+/* The list of links on the right */
 .header ul {
-  font-size: 12px;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -22,40 +89,24 @@
   column-gap: 40px;
   row-gap: 8px;
   align-items: end;
+  font-size: 12px;
 }
+
 .header ul li {
-  margin-left: 0px;
   letter-spacing: 1px;
   color: #ccc;
   font-weight: 600;
   cursor: pointer;
-}
-.navbar-connect {
-  position: absolute;
-  display: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 15px;
-  letter-spacing: 1px;
-  font-weight: 500;
-  background: #ffffff10;
-  padding: 10px 18px;
-  border: 1px solid #ffffff30;
-  border-radius: 8px;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-.navbar-connect:hover {
-  background: #ffffff20;
-}
-.navbar-title {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  transition: color 0.3s ease;
 }
 
+.header ul li:hover {
+  color: #fff;
+}
+
+/* -------------------------------------------------------------------
+   2) Responsive breakpoints
+   ------------------------------------------------------------------- */
 @media only screen and (min-width: 500px) {
   .header {
     padding: 20px 0px;
@@ -76,6 +127,7 @@
 @media only screen and (min-width: 900px) {
   .navbar-connect {
     display: block;
+    animation: pulse 1.5s infinite ease-in-out;
   }
 }
 
@@ -93,4 +145,20 @@
   .navbar-title {
     font-size: 18px;
   }
+}
+
+/* -------------------------------------------------------------------
+   3) (Optional) Placeholder selectors for landing-circle1/2 & nav-fade
+       (add your own styles as needed)
+   ------------------------------------------------------------------- */
+.landing-circle1 {
+  /* … your existing styles … */
+}
+
+.landing-circle2 {
+  /* … your existing styles … */
+}
+
+.nav-fade {
+  /* … your existing styles … */
 }

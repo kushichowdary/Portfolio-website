@@ -1,8 +1,10 @@
+// src/components/Navbar.tsx
+
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
@@ -10,6 +12,7 @@ export let smoother: ScrollSmoother;
 
 const Navbar = () => {
   useEffect(() => {
+    // 1) Initialize ScrollSmoother
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
@@ -23,13 +26,14 @@ const Navbar = () => {
     smoother.scrollTop(0);
     smoother.paused(true);
 
-    let links = document.querySelectorAll(".header ul a, .navbar-connect");
+    // 2) Link-click scrolling
+    const links = document.querySelectorAll(".header ul a, .navbar-connect");
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
+      const element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let section = element.getAttribute("data-href");
+          const section = element.getAttribute("data-href");
           if (section) {
             smoother.scrollTo(section, true, "top top");
           }
@@ -37,7 +41,7 @@ const Navbar = () => {
       });
     });
 
-    // GSAP animation for Hire Me button
+    // 3) “HIRE ME” button pulse animation
     gsap.fromTo(
       ".navbar-connect",
       { scale: 1 },
@@ -50,9 +54,42 @@ const Navbar = () => {
       }
     );
 
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+    // 4) Hide-on-scroll behavior
+    let lastScrollTop = 0;
+    const header = document.querySelector(".header") as HTMLElement;
+
+    const scrollTriggerInstance = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        const scrollTop = self.scroll();
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          // User is scrolling down past 100px → hide navbar
+          header.classList.add("nav-hidden");
+        } else {
+          // User is scrolling up → show navbar
+          header.classList.remove("nav-hidden");
+        }
+        lastScrollTop = scrollTop;
+      },
     });
+
+    // 5) Refresh ScrollSmoother on window resize
+    const handleResize = () => {
+      ScrollSmoother.refresh(true);
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup on unmount
+    return () => {
+      links.forEach((elem) => {
+        (elem as HTMLAnchorElement).removeEventListener("click", () => {});
+      });
+      window.removeEventListener("resize", handleResize);
+      scrollTriggerInstance.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      smoother.kill();
+    };
   }, []);
 
   return (
