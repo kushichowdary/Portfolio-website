@@ -2,30 +2,6 @@ import React, { useState, useEffect } from "react";
 import AnimatedVerifyButton from "./AnimatedVerifyButton";
 import "./styles/OutOfBox.css";
 
-const imageUrls = [
-  "/images/2.jpg",
-  "/images/3.jpg",
-  "/images/4.jpg",
-  "/images/5.jpg",
-  "/images/6.jpg",
-  "/images/7.jpg",
-  "/images/8.jpg",
-  "/images/9.jpg",
-  "/images/10.jpg",
-  "/images/11.jpg",
-  "/images/12.jpg",
-  "/images/13.jpg",
-  "/images/15.jpg",
-  "/images/17.jpg",
-  "/images/19.jpg",
-  "/images/20.jpg",
-  "/images/23.jpg",
-  "/images/25.jpg",
-  "/images/26.jpg",
-  "/images/27.jpg",
-  "/images/28.jpg",
-];
-
 const terminalLines = [
   { prompt: "guest@termux:", command: "cd /passion/photography/explore@lens" },
   { prompt: "explore@lens:~$", command: 'passion = "Capturing moments."' },
@@ -69,29 +45,8 @@ const OutOfBox: React.FC = () => {
   };
 
   return (
-    <div className="outofbox-container">
+    <div className="outofbox-container" onMouseEnter={handleMouseEnter}>
       <h2 className="outofbox-title">Passion</h2>
-
-      <div className="marquee-wrapper" onMouseEnter={handleMouseEnter}>
-        <div className="marquee-blur left-blur" />
-        <div className="marquee-blur right-blur" />
-
-        <div className="marquee-track marquee-left">
-          {[...imageUrls, ...imageUrls].map((url, idx) => (
-            <div className="marquee-card" key={`left-${idx}`}>
-              <img src={url} alt={`img-${idx}`} />
-            </div>
-          ))}
-        </div>
-
-        <div className="marquee-track marquee-right">
-          {[...imageUrls, ...imageUrls].map((url, idx) => (
-            <div className="marquee-card" key={`right-${idx}`}>
-              <img src={url} alt={`img-${idx}`} />
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Terminal */}
       <div className="termux-box">

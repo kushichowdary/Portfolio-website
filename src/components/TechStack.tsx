@@ -14,7 +14,9 @@ import {
 const textureLoader = new THREE.TextureLoader();
 const imageUrls = [
   "/images/react2.webp",
+  "/images/next2.webp",
   "/images/node2.webp",
+  "/images/express.webp",
   "/images/mongo.webp",
   "/images/mysql.webp",
   "/images/typescript.webp",
@@ -165,10 +167,8 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack relative z-10 min-h-[60vh]">
-      <h2 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-lg">
-        
-        My Techstack</h2>
+    <div className="techstack">
+      <h2> My Techstack</h2>
 
       <Canvas
         shadows

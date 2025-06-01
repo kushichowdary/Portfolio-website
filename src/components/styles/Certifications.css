@@ -9,7 +9,7 @@
 
 /* Section background: purple‐black gradient */
 .cert-section {
-  background: linear-gradient(180deg, #000000 0%, #1e0028 200%);
+  background-color: var(--backgroundColor);
   padding: 60px 20px;
   position: relative;
   overflow: hidden;

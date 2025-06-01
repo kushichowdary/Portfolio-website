@@ -99,9 +99,8 @@ const Navbar = () => {
           Kushi
         </a>
         <a
-          href="#contact"
+          href="mailto:gearhead6699@gmail.com"
           className="navbar-connect"
-          data-href="#contact"
           data-cursor="disable"
         >
           HIRE ME
