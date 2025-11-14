@@ -1,0 +1,229 @@
+/* src/components/styles/CertificateCard.module.css */
+
+/* Container for each certificate card */
+.card {
+  width: 300px;
+  height: 400px;
+  perspective: 1200px;
+  margin: 20px;
+  position: relative;
+  border-radius: 15px;
+  overflow: visible; /* allow pseudo‐element glow to extend beyond card */
+  flex-shrink: 0;
+  z-index: 0;
+  animation: pulse 5s infinite; /* Added pulsing effect */
+}
+
+/* Pulsing animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animated rotating glow behind each card with transparency */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 18px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(162, 89, 255, 0.3),
+    rgba(66, 246, 255, 0.3),
+    rgba(255, 102, 187, 0.3),
+    rgba(162, 89, 255, 0.3)
+  );
+  z-index: -1;
+  animation: rotateGradient 4s linear infinite, scaleGlow 2s ease-in-out infinite;
+  opacity: 0.5; /* Added transparency on the whole glow */
+}
+
+/* Keyframes for the rotating conic‐gradient */
+@keyframes rotateGradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Keyframes for scaling glow */
+@keyframes scaleGlow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Floating animation for the card itself */
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.card {
+  animation: floatCard 4s ease-in-out infinite;
+  transition: margin 0.5s ease, transform 0.3s ease;
+  will-change: transform, margin;
+}
+
+/* Inner container flips on hover */
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  border-radius: 15px;
+}
+
+/* Flip effect */
+.card:hover .cardInner {
+  transform: rotateY(180deg);
+}
+
+/* Shared styles for front and back faces */
+.cardFront,
+.cardBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* Front face */
+.cardFront {
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Front image */
+.frontImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Title overlay at bottom of front */
+.frontTitleWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.frontTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Back face */
+.cardBack {
+  background-color: #000;
+  transform: rotateY(180deg);
+  position: relative;
+}
+
+/* Change background color on hover */
+.card:hover .cardFront {
+  background-color: rgba(255, 255, 255, 0.9); /* Lighter on hover */
+}
+
+.card:hover .cardBack {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+/* Animated colored blobs in background spread behind back */
+.animatedBlobs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280%;
+  height: 280%;
+  filter: blur(100px);
+  background:
+    radial-gradient(circle at 30% 30%, #a259ffaa, transparent 50%),
+    radial-gradient(circle at 70% 50%, #66ffccaa, transparent 50%),
+    radial-gradient(circle at 40% 70%, #ff66bbaa, transparent 50%);
+  animation: blobMove 8s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes blobMove {
+  0%, 100% {
+    background-position:
+      30% 30%,
+      70% 50%,
+      40% 70%;
+  }
+  50% {
+    background-position:
+      40% 40%,
+      60% 60%,
+      50% 60%;
+  }
+}
+
+/* Blur overlay on back face */
+.backOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 2;
+}
+
+/* Bottom center content (Verify button) */
+.backContent {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+/* Ensure only visible face is clickable */
+.cardFront { pointer-events: auto; }
+.cardBack  { pointer-events: none; }
+.card:hover .cardFront { pointer-events: none; }
+.card:hover .cardBack  { pointer-events: auto; }
+

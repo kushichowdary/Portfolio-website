@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
+.outofbox-container {
+  padding: 4rem 1rem;
+  background: #0a0a0a;
+  color: white;
+  overflow: hidden;
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* Main title */
+.outofbox-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #d4bfff, #9466ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ------------------------- */
+/* Terminal UI with Floating */
+/* ------------------------- */
+.termux-box {
+  max-width: 850px;
+  margin: 3rem auto 0;
+  background-color: #1a1a1a;
+  border-radius: 14px;
+  font-family: 'Source Code Pro', monospace;
+  box-shadow: 0 0 12px #6c2bd9;
+  overflow: hidden;
+  border: 1px solid #4c1d95;
+
+  /* Floating animation */
+  animation: floatTerminal 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatTerminal {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.termux-header {
+  background-color: #111;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #4c1d95;
+  font-size: 1rem;
+  color: #c084fc;
+  position: relative;
+}
+
+.termux-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.termux-dot.red {
+  background: #f87171;
+}
+.termux-dot.yellow {
+  background: #facc15;
+}
+.termux-dot.green {
+  background: #4ade80;
+}
+
+.termux-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.termux-body {
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  color: #e5e5e5;
+}
+
+.termux-line {
+  margin: 0.6rem 0;
+  white-space: pre-wrap;
+  display: flex;
+  overflow: hidden;
+}
+
+.prompt {
+  color: #22c55e;
+  font-weight: bold;
+  margin-right: 0.4rem;
+}
+
+.color-0 {
+  color: #38bdf8;
+}
+.color-1 {
+  color: #f472b6;
+}
+.color-2 {
+  color: #facc15;
+}
+.color-3 {
+  color: #34d399;
+}
+.color-4 {
+  color: #e879f9;
+}
+
+/* Typing cursor */
+.typing {
+  border-right: 2px solid #22c55e;
+  animation: blink 0.5s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #22c55e;
+  }
+}
+
+/* Verify button wrapper */
+.verify-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* ------------------------- */
+/* Responsive adjustments    */
+/* ------------------------- */
+@media (max-width: 768px) {
+  .outofbox-title {
+    font-size: 3rem;
+  }
+
+  .termux-box {
+    max-width: 95%;
+    margin: 2rem auto 0;
+    border-radius: 10px;
+    border: 1px solid #5c22b0;
+    box-shadow: 0 0 8px #5c22b0;
+    animation: floatTerminal 6s ease-in-out infinite;
+  }
+
+  .termux-header {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  .termux-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .termux-title {
+    font-size: 0.8rem;
+  }
+
+  .termux-body {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .termux-line {
+    margin: 0.4rem 0;
+  }
+
+  .prompt {
+    margin-right: 0.3rem;
+  }
+
+  .verify-button-wrapper {
+    margin-top: 1.5rem;
+  }
+}

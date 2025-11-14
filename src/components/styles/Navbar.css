@@ -1,0 +1,163 @@
+/* -------------------------------------------------------------------
+   1) Base header styles
+   ------------------------------------------------------------------- */
+.header {
+  display: flex;
+  max-width: var(--cMaxWidth);
+  width: var(--cWidth);
+  justify-content: space-between;
+  padding: 20px 0;
+  margin-bottom: -100px;
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 9999;
+
+  /* Start fully transparent; will fade on scroll */
+  background-color: transparent;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Darken header slightly once scrolling begins (optional) */
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Hide header by sliding up */
+.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* Title on the left */
+.navbar-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-title:hover {
+  color: #eae5ec;
+}
+
+/* “HIRE ME” button (hidden until 900px+) */
+.navbar-connect {
+  position: absolute;
+  display: none; /* Enabled via media query */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-connect:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* The list of links on the right */
+.header ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  column-gap: 40px;
+  row-gap: 8px;
+  align-items: end;
+  font-size: 12px;
+}
+
+.header ul li {
+  letter-spacing: 1px;
+  color: #ccc;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header ul li:hover {
+  color: #fff;
+}
+
+/* -------------------------------------------------------------------
+   2) Responsive breakpoints
+   ------------------------------------------------------------------- */
+@media only screen and (min-width: 500px) {
+  .header {
+    padding: 20px 0;
+  }
+  .header ul {
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+  }
+  .header ul li {
+    color: #eae5ec;
+  }
+  .navbar-title {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .navbar-connect {
+    display: block;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    padding: 35px 0;
+  }
+  .header ul {
+    column-gap: 80px;
+    font-size: 16px;
+  }
+  .navbar-connect {
+    font-size: 16px;
+  }
+  .navbar-title {
+    font-size: 18px;
+  }
+}
+
+/* -------------------------------------------------------------------
+   3) Pulse keyframes for the “HIRE ME” button
+   ------------------------------------------------------------------- */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1.1) translate(-50%, -50%);
+  }
+}
+
+/* -------------------------------------------------------------------
+   4) Placeholders for landing circles & nav-fade
+   ------------------------------------------------------------------- */
+.landing-circle1 {
+  /* … your existing styles … */
+}
+
+.landing-circle2 {
+  /* … your existing styles … */
+}
+
+.nav-fade {
+  /* … your existing styles … */
+}

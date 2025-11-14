@@ -1,0 +1,223 @@
+/* src/components/styles/Education.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
+:root {
+  --backgroundColor: #080808;
+}
+
+/* ---------------------------------------------------
+   Education Wrapper (no forced large height on mobile)
+   --------------------------------------------------- */
+.education-wrapper {
+  background-color: var(--backgroundColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem 2rem;
+  font-family: 'Source Code Pro', monospace;
+  position: relative;
+}
+
+/* Only on desktop: ensure wrapper is at least full viewport height */
+@media (min-width: 769px) {
+  .education-wrapper {
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ---------------------------------------------------
+   Gradient Heading
+   --------------------------------------------------- */
+.gradient-heading {
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #d5caff 0%, #7c5fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .gradient-heading {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+}
+
+/* ---------------------------------------------------
+   Cards Container
+   --------------------------------------------------- */
+.cards-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 2rem; /* ensure space before TechStack */
+}
+
+/* On hover (desktop), slide cards apart */
+.cards-container:hover > .card:nth-child(1) {
+  transform: translateX(-93%);
+}
+.cards-container:hover > .card:nth-child(2) {
+  transform: translateX(0);
+}
+.cards-container:hover > .card:nth-child(3) {
+  transform: translateX(93%);
+}
+
+/* ---------------------------------------------------
+   Individual Card
+   --------------------------------------------------- */
+.card {
+  --size-w: 350px;
+  --size-h: 450px;
+  width: var(--size-w);
+  height: var(--size-h);
+  position: absolute;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  cursor: pointer;
+}
+
+.card:nth-child(1) {
+  z-index: 3;
+  transform: translateX(-15px);
+}
+.card:nth-child(2) {
+  z-index: 2;
+  transform: translateX(0);
+}
+.card:nth-child(3) {
+  z-index: 1;
+  transform: translateX(15px);
+}
+
+.card:hover {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------------------------------------------------
+   Card Image
+   --------------------------------------------------- */
+.card-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  margin-bottom: 1rem;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------
+   Card Text Content
+   --------------------------------------------------- */
+.card h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 1.2rem 0 0.2rem;
+  text-align: center;
+}
+
+.card p.school-name,
+.card p.years,
+.card p.grade {
+  color: #ddd;
+  font-size: 1rem;
+  margin: 0.3rem 0;
+}
+
+.card p.grade {
+  margin-bottom: 2rem;
+}
+
+/* ---------------------------------------------------
+   Card Footer Overlay
+   --------------------------------------------------- */
+.card::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------
+   Mobile Adjustments (≤768px)
+   --------------------------------------------------- */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    gap: 2rem;           /* vertical spacing between stacked cards */
+    margin-bottom: 3rem; /* ensures TechStack appears below */
+  }
+
+  .card {
+    position: relative;  /* stack cards normally */
+    width: 90%;
+    height: auto;
+    transform: none !important;
+    margin: 0 auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .card-image {
+    height: 180px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .gradient-heading {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+
+  .card h2 {
+    font-size: 1.3rem;
+    margin: 1rem 0 0.6rem;
+  }
+
+  .card p.school-name,
+  .card p.years,
+  .card p.grade {
+    font-size: 0.9rem;
+    margin: 0.4rem 0;
+  }
+
+  .card::before {
+    height: 50px;
+    font-size: 0.9rem;
+  }
+}

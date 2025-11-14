@@ -1,0 +1,60 @@
+/* src/components/styles/Certifications.css */
+
+/* Global font and base styles */
+.cert-section,
+.cert-title,
+.cert-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Section background: purple‐black gradient */
+.cert-section {
+  background-color: var(--backgroundColor);
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* Glowing title with gradient text */
+.cert-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #d5caff 0%, #7c5fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Flex container: center cards, with smooth gap transitions */
+.cert-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+  transition: gap 0.3s ease; /* animate gap changes */
+}
+
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .cert-wrapper {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-section {
+    padding: 30px 20px;
+  }
+  .cert-title {
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+  .cert-wrapper {
+    gap: 20px;
+  }
+}
